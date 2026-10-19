@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>番茄专注 · Tomato Focus</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="ext-body">
+  <div class="tf-container">
+    <!-- 标题 -->
+    <header class="tf-header">
+      <div class="tf-logo">🍅</div>
+      <h1 class="tf-title">番茄专注</h1>
+      <p class="tf-subtitle">保持专注，高效工作</p>
+    </header>
+
+    <!-- 计时器主体 -->
+    <main class="tf-main">
+      <div class="tf-timer-card">
+        <div class="tf-mode-tabs">
+          <button class="tf-mode-btn active" data-mode="work" data-minutes="25">专注 25min</button>
+          <button class="tf-mode-btn" data-mode="short" data-minutes="5">短休 5min</button>
+          <button class="tf-mode-btn" data-mode="long" data-minutes="15">长休 15min</button>
+        </div>
+
+        <div class="tf-timer-display">
+          <svg class="tf-progress-ring" width="200" height="200" viewBox="0 0 200 200">
+            <circle class="tf-ring-bg" cx="100" cy="100" r="90" fill="none" stroke-width="8"/>
+            <circle class="tf-ring-fill" cx="100" cy="100" r="90" fill="none" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+          <div class="tf-time-text" id="tfTime">25:00</div>
+          <div class="tf-status" id="tfStatus">准备开始</div>
+        </div>
+
+        <div class="tf-controls">
+          <button class="tf-btn tf-btn-primary" id="tfStartBtn">▶ 开始</button>
+          <button class="tf-btn tf-btn-secondary" id="tfResetBtn">↺ 重置</button>
+        </div>
+      </div>
+
+      <!-- 今日统计 -->
+      <div class="tf-stats-card">
+        <h3 class="tf-stats-title">📊 今日统计</h3>
+        <div class="tf-stats-grid">
+          <div class="tf-stat-item">
+            <div class="tf-stat-value" id="tfTodayPomodoros">0</div>
+            <div class="tf-stat-label">完成番茄</div>
+          </div>
+          <div class="tf-stat-item">
+            <div class="tf-stat-value" id="tfTodayMinutes">0</div>
+            <div class="tf-stat-label">专注分钟</div>
+          </div>
+          <div class="tf-stat-item">
+            <div class="tf-stat-value" id="tfStreak">0</div>
+            <div class="tf-stat-label">连续天数</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 快捷设置 -->
+      <div class="tf-settings-card">
+        <h3 class="tf-settings-title">⚙️ 快捷设置</h3>
+        <div class="tf-setting-row">
+          <label>专注时长</label>
+          <select id="tfWorkDuration">
+            <option value="15">15 分钟</option>
+            <option value="25" selected>25 分钟</option>
+            <option value="30">30 分钟</option>
+            <option value="45">45 分钟</option>
+            <option value="50">50 分钟</option>
+          </select>
+        </div>
+        <div class="tf-setting-row">
+          <label>短休时长</label>
+          <select id="tfShortDuration">
+            <option value="3">3 分钟</option>
+            <option value="5" selected>5 分钟</option>
+            <option value="10">10 分钟</option>
+          </select>
+        </div>
+        <div class="tf-setting-row">
+          <label>长休时长</label>
+          <select id="tfLongDuration">
+            <option value="10">10 分钟</option>
+            <option value="15" selected>15 分钟</option>
+            <option value="20">20 分钟</option>
+            <option value="30">30 分钟</option>
+          </select>
+        </div>
+        <div class="tf-setting-row">
+          <label>自动开始休息</label>
+          <input type="checkbox" id="tfAutoBreak" checked>
+        </div>
+        <div class="tf-setting-row">
+          <label>完成时通知</label>
+          <input type="checkbox" id="tfNotify" checked>
+        </div>
+      </div>
+    </main>
+
+    <footer class="tf-footer">
+      番茄工作法 · 25分钟专注 + 5分钟休息
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
