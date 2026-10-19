@@ -4,7 +4,6 @@
   "short_name": "番茄专注",
   "version": "1.0.0",
   "description": "简洁高效的番茄钟专注计时器，帮助你保持专注、追踪工作节奏。",
-  "default_locale": "zh_CN",
   "action": {
     "default_popup": "popup.html",
     "default_title": "番茄专注",
