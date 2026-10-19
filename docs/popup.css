@@ -1,0 +1,151 @@
+/* ================= 基础 ================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-start: #0f0c29;
+  --bg-mid: #302b63;
+  --bg-end: #24243e;
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --accent: #ff6b6b;
+  --accent2: #feca57;
+  --work: #ff6b6b;
+  --break: #1dd1a1;
+  --long: #54a0ff;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* 扩展模式限制宽度；网页模式全屏 */
+.ext-body .tf-container { max-width: 380px; margin: 0 auto; padding: 16px 12px 24px; }
+body:not(.ext-body) .tf-container { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+
+/* ================= 标题 ================= */
+.tf-header { text-align: center; margin-bottom: 16px; }
+.tf-logo { font-size: 2.5rem; margin-bottom: 4px; }
+.tf-title {
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(120deg, #ff6b6b 0%, #feca57 50%, #ff6b6b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: tfShine 4s linear infinite;
+}
+@keyframes tfShine { to { background-position: 200% center; } }
+.tf-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ================= 计时器卡片 ================= */
+.tf-timer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 20px 16px;
+  margin-bottom: 14px;
+  backdrop-filter: blur(10px);
+}
+
+.tf-mode-tabs {
+  display: flex; gap: 6px; margin-bottom: 16px;
+  background: rgba(0,0,0,0.2); border-radius: 12px; padding: 4px;
+}
+.tf-mode-btn {
+  flex: 1; padding: 8px 4px; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-muted);
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  transition: all 0.3s;
+}
+.tf-mode-btn.active { background: var(--accent); color: #fff; }
+.tf-mode-btn[data-mode="short"].active { background: var(--break); }
+.tf-mode-btn[data-mode="long"].active { background: var(--long); }
+
+.tf-timer-display {
+  position: relative; width: 200px; height: 200px; margin: 0 auto 16px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.tf-progress-ring { position: absolute; transform: rotate(-90deg); }
+.tf-ring-bg { stroke: rgba(255,255,255,0.08); }
+.tf-ring-fill {
+  stroke: var(--work);
+  stroke-dasharray: 565.48;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s;
+}
+.tf-ring-fill.break { stroke: var(--break); }
+.tf-ring-fill.long { stroke: var(--long); }
+
+.tf-time-text {
+  font-size: 3rem; font-weight: 800; font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 30px rgba(255,107,107,0.4);
+}
+.tf-status { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+.tf-controls { display: flex; gap: 10px; justify-content: center; }
+.tf-btn {
+  padding: 10px 24px; border: none; border-radius: 12px;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  transition: all 0.2s;
+}
+.tf-btn-primary {
+  background: linear-gradient(135deg, var(--accent), #ee5a24);
+  color: #fff; box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+}
+.tf-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,107,0.4); }
+.tf-btn-secondary {
+  background: rgba(255,255,255,0.1); color: var(--text);
+  border: 1px solid var(--card-border);
+}
+.tf-btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+/* ================= 统计卡片 ================= */
+.tf-stats-card, .tf-settings-card {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 16px; padding: 14px; margin-bottom: 12px;
+  backdrop-filter: blur(10px);
+}
+.tf-stats-title, .tf-settings-title {
+  font-size: 0.9rem; font-weight: 700; margin-bottom: 12px;
+}
+
+.tf-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tf-stat-item {
+  text-align: center; padding: 10px;
+  background: rgba(0,0,0,0.15); border-radius: 10px;
+}
+.tf-stat-value {
+  font-size: 1.4rem; font-weight: 800;
+  background: linear-gradient(120deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.tf-stat-label { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+
+/* ================= 设置 ================= */
+.tf-setting-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.tf-setting-row:last-child { border-bottom: none; }
+.tf-setting-row label { font-size: 0.82rem; color: var(--text-muted); }
+.tf-setting-row select, .tf-setting-row input[type="checkbox"] {
+  padding: 6px 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border);
+  border-radius: 8px; color: var(--text); font-size: 0.82rem; cursor: pointer;
+}
+.tf-setting-row select:focus { outline: none; border-color: var(--accent); }
+.tf-setting-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* ================= 页脚 ================= */
+.tf-footer { text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 16px; }
+
+/* ================= 网页模式增强 ================= */
+body:not(.ext-body) .tf-timer-card { padding: 30px; }
+body:not(.ext-body) .tf-timer-display { width: 240px; height: 240px; }
+body:not(.ext-body) .tf-time-text { font-size: 3.5rem; }
